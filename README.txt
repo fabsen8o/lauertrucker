@@ -1,1 +1,1 @@
-LauerTrucker professioneller Demo-Startbildschirm. GitHub Repository Root: index.html, style.css, manifest.webmanifest. Beispielaufträge; keine Live-Lkw-Routenprüfung, Backend oder echte Datenübermittlung.
+LauerTrucker iPhone-optimiertes Designpaket. Bitte die Dateien im Repository-Root ersetzen. Danach in Safari die URL mit ?v=3 öffnen. Demo-Daten, kein Live-Backend oder Lkw-Routing.
