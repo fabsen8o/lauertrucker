@@ -1,1 +1,1 @@
-LauerTrucker iPhone-optimiertes Designpaket. Bitte die Dateien im Repository-Root ersetzen. Danach in Safari die URL mit ?v=3 öffnen. Demo-Daten, kein Live-Backend oder Lkw-Routing.
+LauerTrucker App-Navigation Demo. Dateien im GitHub-Repository-Root ersetzen. Danach mit ?appnav=1 in Safari öffnen. Demo-Daten, keine Live-Routen oder zentrale Speicherung.
