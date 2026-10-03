@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b1424"><link rel="stylesheet" href="style.css?v=3"><link rel="manifest" href="manifest.webmanifest"><title>LauerTrucker</title></head>
 <body><header><div class="brand"><b>🚛 LAUER <em>VERKEHRSTECHNIK</em></b><small>FAHRER- & BAUSTELLEN-APP</small></div><button class="profilebtn" data-go="profile">MF</button></header>
-<main><div class="rolebar"><button type="button" data-go="home">Fahrer-App</button><button type="button" data-go="office">Büro / Disposition</button></div>
+<div id="loginScreen" class="login-screen"><div class="login-brand"><div class="login-mark">🚛</div><div class="login-name">Lauer<span>Trucker</span></div><div class="login-tag">Gemeinsam sicher ans Ziel.</div></div><form id="loginForm" class="login-card"><div class="login-badge">🚛</div><h1>Willkommen zurück</h1><p>Bitte melde dich an.</p><label for="loginUser">Benutzername</label><input id="loginUser" autocomplete="username" placeholder="Benutzername" required><label for="loginPass">Passwort</label><input id="loginPass" type="password" autocomplete="current-password" placeholder="Passwort" required><button type="submit">Anmelden →</button><div id="loginMessage" role="status"></div><small>Demo-Zugang: <b>lauer</b> / <b>trucker2026</b></small></form><div class="login-foot">♢ Sicher　 ·　◷ Zuverlässig　 ·　♧ Gemeinsam　 ·　⌖ Ans Ziel</div></div><main id="appMain" class="app-locked"><div class="rolebar"><button type="button" data-go="home">Fahrer-App</button><button type="button" data-go="office">Büro / Disposition</button></div>
 <section class="page" id="office"><small class="eyebrow">BÜRO · DISPOSITION</small><h1>Aufträge verwalten</h1>
 <p class="muted">Aufträge anlegen und im Fahrerbereich dieses Browsers anzeigen.</p>
 <article><form id="orderForm"><div class="formgrid">
@@ -56,4 +56,4 @@ document.addEventListener('click',function(e){
 renderOrders();
 window.goLauerPage=go;
 })();
-</script></body></html>
+</script><script>(function(){const s=document.getElementById('loginScreen'),m=document.getElementById('appMain'),f=document.getElementById('loginForm'),msg=document.getElementById('loginMessage');if(sessionStorage.getItem('lt_demo_login')==='1'){s.classList.add('login-hidden');m.classList.remove('app-locked')}f.addEventListener('submit',function(e){e.preventDefault();if(document.getElementById('loginUser').value.trim()==='lauer'&&document.getElementById('loginPass').value==='trucker2026'){sessionStorage.setItem('lt_demo_login','1');s.classList.add('login-hidden');m.classList.remove('app-locked')}else{msg.textContent='Benutzername oder Passwort stimmt nicht.'}})})();</script></body></html>
