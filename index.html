@@ -21,8 +21,81 @@
 <section class="page" id="handover"><small class="eyebrow">DIGITALE DOKUMENTATION</small><h1>Übergabe</h1><article><label>Gelieferte Menge<input value="24 t"></label><label>Empfänger<input placeholder="Name der übernehmenden Person"></label><label>Fahrer<input value="Max Fahrer"></label><label class="check"><input type="checkbox" id="confirm"> Übergabeangaben geprüft</label><button class="primary" id="save">Übergabe bestätigen</button><p id="msg" class="muted"></p></article></section>
 <section class="page" id="schedule"><small class="eyebrow">PLANUNG</small><h1>Dienstplan</h1><article><p>08:00 · Baustelle A1 · Berlin</p><p>09:30 · Baustelle B2 · Potsdam</p><p>10:00 · Markierung B1 · Magdeburg</p></article></section>
 <section class="page" id="profile"><small class="eyebrow">FAHRER & FAHRZEUG</small><h1>Mein Profil</h1><article><div class="avatar">MF</div><h2>Max Fahrer</h2><p>Fahrer · Demo-Profil</p></article><article><small>FAHRZEUGPROFIL</small><h2>Sattelzug · B-AB 123</h2><div class="spec"><div>Höhe<b>4,00 m</b></div><div>Breite<b>2,55 m</b></div><div>Gewicht<b>40 t</b></div></div><p class="muted tiny">Demo-Daten. Keine echte Routenprüfung.</p></article></section>
+
+<section class="page" id="admin">
+  <small class="eyebrow">BÜRO · VERWALTUNG</small>
+  <h1>Administration</h1>
+  <p class="muted">Fahrer, Fahrzeuge, Benutzer und Aufträge zentral in dieser App verwalten.</p>
+
+  <div class="adminstats">
+    <div><b id="statDrivers">0</b><small>Fahrer</small></div>
+    <div><b id="statVehicles">0</b><small>Fahrzeuge</small></div>
+    <div><b id="statOpen">0</b><small>Offene Aufträge</small></div>
+    <div><b id="statDone">0</b><small>Erledigte Aufträge</small></div>
+  </div>
+
+  <div class="admintabs">
+    <button class="admin-tab active" data-admin-tab="drivers">Fahrer</button>
+    <button class="admin-tab" data-admin-tab="vehicles">Fahrzeuge</button>
+    <button class="admin-tab" data-admin-tab="users">Benutzer & Rechte</button>
+    <button class="admin-tab" data-admin-tab="adminOrders">Aufträge</button>
+  </div>
+
+  <div class="adminpanel active" id="admin-drivers">
+    <article>
+      <h2>Fahrer anlegen</h2>
+      <form id="driverForm" class="formgrid">
+        <label>Vorname<input id="dFirst" required placeholder="z. B. Max"></label>
+        <label>Nachname<input id="dLast" required placeholder="z. B. Müller"></label>
+        <label>Telefon<input id="dPhone" placeholder="+49 ..."></label>
+        <label>Führerschein<input id="dLicense" placeholder="C / CE"></label>
+        <label>Fahrzeug<input id="dVehicle" placeholder="Kennzeichen"></label>
+        <label>Status<select id="dActive"><option value="active">Aktiv</option><option value="inactive">Inaktiv</option></select></label>
+        <button class="primary wide" type="submit">Fahrer speichern</button>
+      </form>
+    </article>
+    <div id="driverAdminList"></div>
+  </div>
+
+  <div class="adminpanel" id="admin-vehicles">
+    <article>
+      <h2>Fahrzeug anlegen</h2>
+      <form id="vehicleForm" class="formgrid">
+        <label>Kennzeichen<input id="vPlate" required placeholder="DU-LT 123"></label>
+        <label>Fahrzeugtyp<input id="vType" required placeholder="Sattelzug"></label>
+        <label>Gewicht<input id="vWeight" placeholder="40 t"></label>
+        <label>Status<select id="vStatus"><option>Verfügbar</option><option>Unterwegs</option><option>Werkstatt</option><option>Inaktiv</option></select></label>
+        <button class="primary wide" type="submit">Fahrzeug speichern</button>
+      </form>
+    </article>
+    <div id="vehicleAdminList"></div>
+  </div>
+
+  <div class="adminpanel" id="admin-users">
+    <article>
+      <h2>Benutzer & Rechte</h2>
+      <form id="userForm" class="formgrid">
+        <label>Name<input id="uName" required placeholder="z. B. Disposition"></label>
+        <label>Benutzername<input id="uLogin" required placeholder="z. B. dispo"></label>
+        <label>Rolle<select id="uRole"><option>Administrator</option><option>Disposition</option><option>Fahrer</option></select></label>
+        <label>Status<select id="uActive"><option value="active">Aktiv</option><option value="inactive">Inaktiv</option></select></label>
+        <button class="primary wide" type="submit">Benutzer speichern</button>
+      </form>
+      <p class="muted tiny">Hinweis: In dieser Testversion werden Benutzer lokal im Browser gespeichert. Es ist noch keine echte sichere Anmeldung mit Server-Datenbank.</p>
+    </article>
+    <div id="userAdminList"></div>
+  </div>
+
+  <div class="adminpanel" id="admin-adminOrders">
+    <article>
+      <h2>Auftragsverwaltung</h2>
+      <p class="muted">Alle lokal gespeicherten Dispositionsaufträge mit Status und Bearbeitungsmöglichkeiten.</p>
+      <div id="adminOrderList"></div>
+    </article>
+  </div>
+</section>
 </main>
-<nav aria-label="Hauptnavigation"><button data-go="home" class="selected"><span>⌂</span><small>Start</small></button><button data-go="orders"><span>▤</span><small>Aufträge</small></button><button data-go="map"><span>➤</span><small>Karte</small></button><button data-go="schedule"><span>▦</span><small>Plan</small></button><button data-go="profile"><span>●</span><small>Profil</small></button><button data-go="office"><span>▣</span><small>Büro</small></button></nav>
+<nav aria-label="Hauptnavigation"><button data-go="home" class="selected"><span>⌂</span><small>Start</small></button><button data-go="orders"><span>▤</span><small>Aufträge</small></button><button data-go="map"><span>➤</span><small>Karte</small></button><button data-go="schedule"><span>▦</span><small>Plan</small></button><button data-go="profile"><span>●</span><small>Profil</small></button><button data-go="office"><span>▣</span><small>Büro</small></button><button data-go="admin"><span>⚙</span><small>Admin</small></button></nav>
 <script>
 (function(){
 function go(id){
@@ -56,4 +129,68 @@ document.addEventListener('click',function(e){
 renderOrders();
 window.goLauerPage=go;
 })();
-</script><script>(function(){const s=document.getElementById('loginScreen'),m=document.getElementById('appMain'),f=document.getElementById('loginForm'),msg=document.getElementById('loginMessage');if(sessionStorage.getItem('lt_demo_login')==='1'){s.classList.add('login-hidden');m.classList.remove('app-locked')}f.addEventListener('submit',function(e){e.preventDefault();if(document.getElementById('loginUser').value.trim()==='lauer'&&document.getElementById('loginPass').value==='trucker2026'){sessionStorage.setItem('lt_demo_login','1');s.classList.add('login-hidden');m.classList.remove('app-locked')}else{msg.textContent='Benutzername oder Passwort stimmt nicht.'}})})();</script></body></html>
+</script><script>(function(){const s=document.getElementById('loginScreen'),m=document.getElementById('appMain'),f=document.getElementById('loginForm'),msg=document.getElementById('loginMessage');if(sessionStorage.getItem('lt_demo_login')==='1'){s.classList.add('login-hidden');m.classList.remove('app-locked')}f.addEventListener('submit',function(e){e.preventDefault();if(document.getElementById('loginUser').value.trim()==='lauer'&&document.getElementById('loginPass').value==='trucker2026'){sessionStorage.setItem('lt_demo_login','1');s.classList.add('login-hidden');m.classList.remove('app-locked')}else{msg.textContent='Benutzername oder Passwort stimmt nicht.'}})})();</script>
+<script>
+(function(){
+  var K={drivers:'lt_drivers',vehicles:'lt_vehicles',users:'lt_users',orders:'lauertrucker_orders_v1'};
+  function arr(k){try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return []}}
+  function save(k,v){localStorage.setItem(k,JSON.stringify(v))}
+  function esc2(s){return String(s||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function refreshStats(){
+    var d=arr(K.drivers),v=arr(K.vehicles),o=arr(K.orders);
+    document.getElementById('statDrivers').textContent=d.filter(x=>x.active!=='inactive').length;
+    document.getElementById('statVehicles').textContent=v.filter(x=>x.status!=='Inaktiv').length;
+    document.getElementById('statOpen').textContent=o.filter(x=>!x.done).length;
+    document.getElementById('statDone').textContent=o.filter(x=>x.done).length;
+  }
+  function renderDrivers(){
+    var d=arr(K.drivers),box=document.getElementById('driverAdminList');
+    box.innerHTML=d.length?d.map(function(x,i){
+      return '<div class="adminitem"><div><b>'+esc2(x.first)+' '+esc2(x.last)+'</b><small>'+esc2(x.phone||'Keine Telefonnummer')+' · Klasse '+esc2(x.license||'-')+' · Fahrzeug '+esc2(x.vehicle||'-')+'</small></div><span class="status '+(x.active==='inactive'?'off':'')+'">'+(x.active==='inactive'?'Inaktiv':'Aktiv')+'</span><button data-del-driver="'+i+'">Löschen</button></div>'
+    }).join(''):'<p class="muted">Noch keine Fahrer angelegt.</p>';
+  }
+  function renderVehicles(){
+    var d=arr(K.vehicles),box=document.getElementById('vehicleAdminList');
+    box.innerHTML=d.length?d.map(function(x,i){
+      return '<div class="adminitem"><div><b>'+esc2(x.plate)+'</b><small>'+esc2(x.type)+' · '+esc2(x.weight||'-')+'</small></div><span class="status">'+esc2(x.status)+'</span><button data-del-vehicle="'+i+'">Löschen</button></div>'
+    }).join(''):'<p class="muted">Noch keine Fahrzeuge angelegt.</p>';
+  }
+  function renderUsers(){
+    var d=arr(K.users),box=document.getElementById('userAdminList');
+    box.innerHTML=d.length?d.map(function(x,i){
+      return '<div class="adminitem"><div><b>'+esc2(x.name)+'</b><small>@'+esc2(x.login)+' · Rolle: '+esc2(x.role)+'</small></div><span class="status '+(x.active==='inactive'?'off':'')+'">'+(x.active==='inactive'?'Inaktiv':'Aktiv')+'</span><button data-del-user="'+i+'">Löschen</button></div>'
+    }).join(''):'<p class="muted">Noch keine Benutzer angelegt.</p>';
+  }
+  function renderAdminOrders(){
+    var d=arr(K.orders),box=document.getElementById('adminOrderList');
+    box.innerHTML=d.length?d.map(function(x,i){
+      return '<div class="adminitem adminorder"><div><b>'+esc2(x.site)+'</b><small>'+esc2(x.material)+' · '+esc2(x.amount)+' · '+esc2(x.driver||'Kein Fahrer')+'</small><small>⌖ '+esc2(x.address)+'</small></div><span class="status '+(x.done?'done':'')+'">'+(x.done?'Erledigt':'Offen')+'</span><button data-toggle-admin="'+i+'">'+(x.done?'Wieder öffnen':'Erledigt')+'</button><button data-del-order="'+i+'">Löschen</button></div>'
+    }).join(''):'<p class="muted">Noch keine Aufträge angelegt.</p>';
+  }
+  function renderAll(){refreshStats();renderDrivers();renderVehicles();renderUsers();renderAdminOrders();}
+  document.getElementById('driverForm').addEventListener('submit',function(e){
+    e.preventDefault();var d=arr(K.drivers);d.push({first:dFirst.value,last:dLast.value,phone:dPhone.value,license:dLicense.value,vehicle:dVehicle.value,active:dActive.value});save(K.drivers,d);this.reset();renderAll();alert('Fahrer gespeichert.');
+  });
+  document.getElementById('vehicleForm').addEventListener('submit',function(e){
+    e.preventDefault();var d=arr(K.vehicles);d.push({plate:vPlate.value,type:vType.value,weight:vWeight.value,status:vStatus.value});save(K.vehicles,d);this.reset();renderAll();alert('Fahrzeug gespeichert.');
+  });
+  document.getElementById('userForm').addEventListener('submit',function(e){
+    e.preventDefault();var d=arr(K.users);d.push({name:uName.value,login:uLogin.value,role:uRole.value,active:uActive.value});save(K.users,d);this.reset();renderAll();alert('Benutzer gespeichert.');
+  });
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-admin-tab]');
+    if(b){
+      document.querySelectorAll('.admin-tab').forEach(x=>x.classList.remove('active'));
+      document.querySelectorAll('.adminpanel').forEach(x=>x.classList.remove('active'));
+      b.classList.add('active');document.getElementById('admin-'+b.dataset.adminTab).classList.add('active');
+    }
+    var d=e.target.closest('[data-del-driver]');if(d){var a=arr(K.drivers);a.splice(+d.dataset.delDriver,1);save(K.drivers,a);renderAll();}
+    var v=e.target.closest('[data-del-vehicle]');if(v){var a=arr(K.vehicles);a.splice(+v.dataset.delVehicle,1);save(K.vehicles,a);renderAll();}
+    var u=e.target.closest('[data-del-user]');if(u){var a=arr(K.users);a.splice(+u.dataset.delUser,1);save(K.users,a);renderAll();}
+    var o=e.target.closest('[data-toggle-admin]');if(o){var a=arr(K.orders);a[+o.dataset.toggleAdmin].done=!a[+o.dataset.toggleAdmin].done;save(K.orders,a);renderAll();}
+    var z=e.target.closest('[data-del-order]');if(z){var a=arr(K.orders);a.splice(+z.dataset.delOrder,1);save(K.orders,a);renderAll();}
+  });
+  renderAll();
+})();
+</script>
+</body></html>
